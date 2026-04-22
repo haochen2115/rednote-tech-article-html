@@ -1,0 +1,517 @@
+<!--
+  Tech Paper Card Template
+  ------------------------
+  Copy this file and fill in the content. Don't regenerate the CSS from scratch —
+  it encodes many small decisions (font imports, variable scales, responsive tweaks).
+
+  Structure:
+  1. <head> with fonts + CSS (do not modify)
+  2. Header
+  3. Content cards (replicate <div class="card">...</div> as needed)
+  4. Final dark verdict card
+  5. Tags and footer
+
+  Placeholders use {{ DOUBLE_BRACES }} — find and replace these.
+
+  See references/design-system.md for the component catalog.
+  See references/voice-guide.md before writing any copy.
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ PAGE_TITLE }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #f5f0e8;
+  --accent: #c23b22;
+  --accent2: #2d5a27;
+  --accent3: #1a5276;
+  --muted: #8c7b6b;
+  --card-bg: #fffdf7;
+  --shadow: rgba(60,40,20,0.12);
+  --gold: #b8860b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 40px 0 30px;
+}
+
+.header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 20px auto 0;
+}
+
+.header .tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  padding: 3px 12px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.header h1 .em { color: var(--accent); }
+
+.header .subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 300;
+}
+
+.header .arxiv {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent3);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-number {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.035);
+  line-height: 1;
+}
+
+.card-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.card-label.red { background: var(--accent); }
+.card-label.green { background: var(--accent2); }
+.card-label.blue { background: var(--accent3); }
+.card-label.gold { background: var(--gold); }
+
+.card h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.45;
+}
+
+.card p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+
+.card p:last-child { margin-bottom: 0; }
+.card strong { font-weight: 700; color: var(--ink); }
+
+/* ===== INSIGHT BOX ===== */
+.insight {
+  background: #faf6ef;
+  border-left: 3px solid var(--accent);
+  padding: 14px 16px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.insight.green { border-left-color: var(--accent2); }
+.insight.blue { border-left-color: var(--accent3); }
+.insight.gold { border-left-color: var(--gold); }
+
+.insight p {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ===== DIR BOX ===== */
+.dir-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.dir-box.pos { background: #e8f4e8; }
+.dir-box.neg { background: #fde8e4; }
+.dir-box.cond { background: #fef8e8; }
+
+.dir-box .icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--accent2);
+  min-width: 22px;
+  font-family: 'JetBrains Mono', monospace;
+  padding-top: 2px;
+}
+.dir-box.cond .icon { color: var(--gold); }
+.dir-box.neg .icon { color: var(--accent); }
+.dir-box .text { font-weight: 400; color: var(--ink); line-height: 1.6; font-size: 13px; }
+.dir-box .text strong { font-weight: 700; }
+
+/* ===== COMPARE COLUMNS ===== */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.compare-col {
+  padding: 16px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.compare-col.left { background: #fde8e4; }
+.compare-col.right { background: #e8f4e8; }
+
+.compare-col h4 { font-size: 14px; margin-bottom: 8px; font-weight: 700; }
+.compare-col.left h4 { color: var(--accent); }
+.compare-col.right h4 { color: var(--accent2); }
+.compare-col p { font-size: 12.5px; color: #555; margin: 0; font-weight: 400; }
+
+/* ===== EVIDENCE ===== */
+.evidence {
+  background: rgba(0,0,0,0.025);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 12.5px;
+  color: #666;
+  line-height: 1.75;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.evidence .paper {
+  font-weight: 700;
+  color: var(--accent3);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.evidence .hot { color: var(--accent); font-weight: 700; }
+.evidence .good { color: var(--accent2); font-weight: 700; }
+.evidence .neutral { color: var(--ink); font-weight: 700; }
+
+/* ===== FORMULA ===== */
+.formula {
+  background: #fefbf3;
+  border: 1px dashed rgba(184,134,11,0.3);
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin: 14px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+.formula .desc {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ===== VERDICT (dark summary) ===== */
+.verdict {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.verdict h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 19px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.verdict p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  font-weight: 300;
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+
+.verdict strong { color: #fff; font-weight: 700; }
+
+.verdict .hl {
+  display: inline;
+  background: rgba(194,59,34,0.45);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+/* ===== TAKEAWAY ===== */
+.takeaway {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, rgba(184,134,11,0.08) 0%, transparent 100%);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  color: #3a3a3a;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.takeaway::before {
+  content: '应用';
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.takeaway strong { font-weight: 700; color: var(--ink); }
+
+/* ===== SEPARATOR ===== */
+.sep {
+  text-align: center;
+  padding: 8px 0;
+  font-size: 16px;
+  color: rgba(0,0,0,0.1);
+  letter-spacing: 8px;
+}
+
+/* ===== PILLS AND FOOTER ===== */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.pill {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.04);
+  color: var(--muted);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.footer {
+  text-align: center;
+  padding: 28px 0 10px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
+/* ===== RATIO VISUALIZATION ===== */
+.ratio-viz {
+  display: flex;
+  height: 34px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 14px 0;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.ratio-viz .overlap {
+  background: var(--accent2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 97;
+  letter-spacing: 0.5px;
+}
+
+.ratio-viz .rest {
+  background: rgba(0,0,0,0.12);
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 3;
+  font-size: 9px;
+}
+
+/* ===== LENGTH/CURVE VIZ ===== */
+.length-viz {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 18px 0 10px;
+  align-items: end;
+  height: 90px;
+  padding-top: 20px;
+}
+
+.length-viz .bar {
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.length-viz .bar.weak { background: rgba(140,123,107,0.35); }
+.length-viz .bar.best { background: var(--accent2); }
+.length-viz .bar.bad { background: var(--accent); }
+
+.length-viz .bar-label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.length-caption {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="tag">{{ TAG_TEXT }}</div>
+    <h1>{{ TITLE_LINE_1 }}<br><span class="em">{{ TITLE_LINE_2 }}</span></h1>
+    <div class="subtitle">{{ SUBTITLE }}</div>
+    <div class="arxiv">{{ OPTIONAL_ARXIV_ID_OR_DATE }}</div>
+  </div>
+
+  <!-- ===== CARD 1 ===== -->
+  <div class="card">
+    <div class="card-number">01</div>
+    <span class="card-label red">{{ CARD_LABEL }}</span>
+    <h2>{{ CARD_TITLE_AS_DECLARATIVE_STATEMENT }}</h2>
+    <p>{{ BODY_PARAGRAPH }}</p>
+
+    <!-- Optional: evidence block -->
+    <div class="evidence">
+      <span class="paper">{{ SOURCE_LABEL }}</span>
+      {{ EVIDENCE_LINE_1 }}<br>
+      {{ EVIDENCE_LINE_2 }}
+    </div>
+
+    <!-- Optional: insight box -->
+    <div class="insight">
+      <p>{{ INTERPRETIVE_STATEMENT }}</p>
+    </div>
+  </div>
+
+  <div class="sep">· · ·</div>
+
+  <!-- Add more cards as needed. Typical count: 5-7 content cards. -->
+  <!-- Change card-label color (red/green/blue/gold) to match content semantic. -->
+
+
+  <!-- ===== FINAL DARK VERDICT ===== -->
+  <div class="verdict">
+    <span class="card-label red" style="margin-bottom:14px;">Summary</span>
+    <h2>{{ SUMMARY_TITLE_OBSERVATIONAL }}</h2>
+    <p><span class="hl">i</span> {{ KEY_OBSERVATION_1 }}</p>
+    <p><span class="hl">ii</span> {{ KEY_OBSERVATION_2 }}</p>
+    <p><span class="hl">iii</span> {{ KEY_OBSERVATION_3 }}</p>
+    <p style="margin-top:16px; font-size:12px; opacity:0.5; line-height:1.65;">
+      {{ OPTIONAL_CLOSING_OBSERVATION }}
+    </p>
+  </div>
+
+  <!-- ===== TAGS ===== -->
+  <div class="pills">
+    <span class="pill">#{{ TAG_1 }}</span>
+    <span class="pill">#{{ TAG_2 }}</span>
+    <span class="pill">#{{ TAG_3 }}</span>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    {{ SOURCE_CITATION }}<br>
+    {{ AUTHOR_LINE }}
+  </div>
+
+</div>
+
+</body>
+</html>
