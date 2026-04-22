@@ -142,12 +142,6 @@ Do not:
 - Add gradient backgrounds to content cards (only the summary card has a gradient)
 - Use border-radius > 12px (corners stay "papery")
 
-## Credits
-
-Design and skill by [@Banana](https://www.zhihu.com/column/road-to-agi) · Road to AGI
-
-The aesthetic draws from traditions of Japanese technical notebooks (手帳), typography-first magazine layouts, and the Medium-but-not-Medium mid-2010s longform blog look.
-
 ## License
 
 MIT — use freely, fork freely, no attribution required (but appreciated).
