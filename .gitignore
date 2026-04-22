@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# Release artifacts (built locally, published via GitHub Releases)
+*.skill
